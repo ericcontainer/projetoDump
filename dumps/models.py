@@ -28,3 +28,8 @@ class Membership(models.Model):
 	def __str__(self):
 		return "User: " + str(self.person) + " Group: " + str(self.group)
 
+class History(models.Model):
+	filename = models.CharField(max_length=200)
+	download_date = models.DateTimeField(auto_now_add=True, blank=True)
+	person = models.ForeignKey(Person, on_delete=models.CASCADE)
+	
