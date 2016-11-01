@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<script>
+
+$(document).ready(function(){
+
+    $("button").click(function(){
+	    $.post("get_post",
+        {
+          type: "GET",
+          url: "get_post",
+		  dataType: "text/html",
+        })
+	
+    });
+});
+</script>
+
+<div class="container">
+<div class="row">
+<h3> Lista de Diretórios: </h3>
+	<ul>
+    {% for d, f in dirs.iteritems %}
+		<li>{{d}}</li>
+			<ul>
+			{%for ff in f %}
+				<li> <a href="{% url 'download' path=d filename=ff %}"> {{ ff }} </a></li>
+			{%endfor%}
+			</ul>
+	{%endfor%}
+	</ul>
+	<a href="{% url 'download' path="BSA_AP_84006_PRO_SIGPB" filename="Django" %}">foo </a>
+	<button>download</button>
+</div>
+</div>
+{% endblock %}
